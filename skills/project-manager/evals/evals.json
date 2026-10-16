@@ -1,0 +1,53 @@
+{
+  "skill_name": "project-manager",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to create a new IBM API Connect project called 'customer-orders-api' with description 'REST API for managing customer orders' and tags 'rest', 'orders', 'v1'",
+      "expected_output": "Creates project folder, generates unique 8-char ID, adds entry to .apistudio-projects with correct metadata, handles git commit if in repo mode",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Can you rename my APIC project from 'test-weather' to 'production-weather-service'? Keep everything else the same",
+      "expected_output": "Renames project folder, updates .apistudio-projects key while preserving ID, updates lastUpdated timestamp, commits if git mode",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I want to duplicate the 'DPv6_Product_Weather' API Connect project and call the new one 'DPv6_Product_Weather_v2' with description 'Weather API v2 with enhanced features'",
+      "expected_output": "Copies project folder, generates new unique ID (different from source), adds new entry with copied tags and new description, commits if git mode",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Create an IBM API Connect project named 'payment-gateway' - no description or tags needed",
+      "expected_output": "Creates project with empty description and empty tags array, generates ID, creates folder structure, handles both local and git modes correctly",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Update the description for my APIC project 'api-56m' to 'High-performance API for 56M records processing' and add tags 'performance', 'batch-processing'",
+      "expected_output": "Updates only description and tags in .apistudio-projects, preserves ID, updates lastUpdated timestamp, commits if git mode",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Create a new API Connect project called 'DPv6_Product_Weather' with description 'Duplicate test'",
+      "expected_output": "Should detect duplicate project name and either reject with clear error message or suggest alternative name like 'DPv6_Product_Weather_1' or 'DPv6_Product_Weather_copy'",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "I have a corrupted .apistudio-projects file that won't parse. Can you help me create a new APIC project called 'emergency-api'?",
+      "expected_output": "Should detect invalid JSON/YAML format, report the parsing error clearly, and either offer to recreate the file or ask user to fix it manually before proceeding",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Rename the IBM API Connect project 'nonexistent-project' to 'new-name'",
+      "expected_output": "Should detect that source project doesn't exist, list available projects, and ask user to verify the correct project name",
+      "files": []
+    }
+  ]
+}

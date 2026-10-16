@@ -1,0 +1,21 @@
+kind: Invoke
+apiVersion: api.ibm.com/v1
+metadata:
+  name: wM_APIKey_Invoke
+  namespace: wM_APIKey_Weather
+  version: '1.0'
+  tags: []
+  labels:
+    gatewayTypes:
+      - webMethods
+spec:
+  endpoint:
+    http:
+      target:
+        timeout: 30
+        url: https://sample-api.eu-west-a.apiconnect.automation.ibm.com/environment
+        urlType: plain
+      verb: CUSTOM
+  extensions:
+    webm-gateway:
+      apiVersion: api.ibm.com/v1

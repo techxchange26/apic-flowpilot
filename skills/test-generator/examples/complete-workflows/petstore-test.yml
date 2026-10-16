@@ -1,0 +1,85 @@
+# Complete Workflow — Test After Publishing
+#
+# Context: User published an API and received the gateway endpoint.
+# Endpoint confirmed by user: http://gateway:9090/api/petstore/1.0
+#
+# Execution command:
+#   apic test PetStoreProject \
+#     --names dev:petstore-test:1.0 \
+#     --localDir /path/to/projects \
+#     --endpoints http://gateway:9090/api/petstore/1.0 \
+#     --env bearer_token=${BEARER_TOKEN}
+#
+# Files generated for this workflow:
+#   tests/petstore-test.yaml                      (this file)
+#   tests/environments/petstore-environment.yml
+#   tests/assertions/200-pet-response.yml
+#   tests/assertions/201-created.yml
+#   tests/assertions/400-bad-request.yml
+
+kind: test
+apiVersion: api.ibm.com/v1
+metadata:
+  name: petstore-test
+  namespace: dev
+  version: "1.0"
+  tags: []
+spec:
+  api:
+    $endpoint: http://gateway:9090/api/petstore/1.0
+  request:
+    - method: POST
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      payload:
+        raw:
+          json: |-
+            {"id": 10, "name": "doggie", "photoUrls": ["string"]}
+      parameters: []
+      assertions:
+        - $ref: dev:201-created:1.0
+
+    - method: PUT
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      payload:
+        raw:
+          json: |-
+            {"id": 10, "name": "updated-doggie", "photoUrls": ["string"]}
+      parameters: []
+      assertions:
+        - $ref: dev:200-pet-response:1.0
+
+    - method: GET
+      resource: /pets
+      headers:
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      parameters: []
+      assertions:
+        - $ref: dev:200-success:1.0
+
+    - method: POST
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      payload:
+        raw:
+          json: '{"invalid": "data"}'
+      parameters: []
+      assertions:
+        - $ref: dev:400-bad-request:1.0
+
+  environment:
+    $ref: dev:petstore-environment:1.0

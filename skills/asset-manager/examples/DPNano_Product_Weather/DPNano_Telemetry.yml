@@ -1,0 +1,18 @@
+kind: Telemetry
+apiVersion: api.ibm.com/v1
+metadata:
+  name: DPNano_Telemetry
+  namespace: DPNano_Product_Weather
+  version: '1.0'
+  tags: []
+  labels:
+    gatewayTypes:
+      - nano
+spec:
+  verbosity:
+    - level: detailed
+      onSuccessTrimTo: detailed
+      inboundLevel: detailed
+      outboundLevel: detailed
+      operations:
+        - method: GET

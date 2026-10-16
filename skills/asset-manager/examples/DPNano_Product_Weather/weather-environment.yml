@@ -1,0 +1,15 @@
+kind: environment
+metadata:
+  version: '1.0'
+  namespace: DPNano_Product_Weather
+  name: weather-environment
+  tags: []
+apiVersion: api.ibm.com/v1
+spec:
+  variables:
+    - key: X-IBM-Client-Id_value
+      isSecret: true
+      value: $(X-IBM-Client-Id_value)
+    - key: X-IBM-Client-Secret_value
+      isSecret: true
+      value: $(X-IBM-Client-Secret_value)

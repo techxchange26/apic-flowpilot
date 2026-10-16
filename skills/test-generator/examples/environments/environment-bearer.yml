@@ -1,0 +1,19 @@
+kind: environment
+apiVersion: api.ibm.com/v1
+metadata:
+  name: <api-name>-environment
+  namespace: <namespace>
+  version: "1.0"
+  tags: []
+spec:
+  variables:
+    # Use bearer_token for APIs with http/bearer or oauth2 securitySchemes.
+    # Supply at runtime: --env bearer_token=${BEARER_TOKEN}
+    - key: bearer_token
+      isSecret: true
+      value: ""
+    # Use api_key for APIs with apiKey securitySchemes.
+    # Supply at runtime: --env api_key=${API_KEY}
+    - key: api_key
+      isSecret: true
+      value: ""

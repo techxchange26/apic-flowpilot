@@ -1,0 +1,19 @@
+kind: assertion
+apiVersion: api.ibm.com/v1
+metadata:
+  name: 200-success
+  namespace: <namespace>
+  version: "1.0"
+  tags:
+    - assertion
+spec:
+  - name: Validate response status code
+    key: responseStatus
+    value: 200
+    action: equals
+    stopOnFail: false
+  - name: Validate content type
+    key: responseHeaders.content-type
+    value: application/json
+    action: equals
+    stopOnFail: false

@@ -1,0 +1,497 @@
+{
+  "skill_name": "lint-project",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Lint the IBM API Connect project 'orders-api'",
+      "expected_output": "Verifies CLI installation, uses current workspace directory as localDir (default), constructs 'apic lint orders-api --localDir .' command, executes lint, and reports results in TABLE format with summary of assets analyzed, errors, and warnings",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI installation check performed",
+          "description": "Verifies that apic CLI is installed before attempting lint operation"
+        },
+        {
+          "name": "Correct lint command constructed",
+          "description": "Command includes 'apic lint orders-api --localDir' with appropriate path"
+        },
+        {
+          "name": "TABLE format used by default",
+          "description": "Results displayed in human-readable TABLE format when format not specified"
+        },
+        {
+          "name": "Summary statistics provided",
+          "description": "Reports total assets analyzed, errors found, and warnings found"
+        },
+        {
+          "name": "Next steps suggested",
+          "description": "Provides actionable recommendations for fixing issues and next steps"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Validate all the APIC projects in 'test-api' folder",
+      "expected_output": "Uses --all flag to lint all projects in the directory, verifies CLI, uses current workspace directory as localDir (default), constructs 'apic lint --all --localDir .', and reports comprehensive results for all projects",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Uses --all flag",
+          "description": "Lint command includes '--all' flag for linting all projects"
+        },
+        {
+          "name": "Correct directory specified",
+          "description": "Command uses --localDir with current workspace directory ('.'). 'test-api' is a project description, not a filesystem path — localDir must always default to '.'"
+        },
+        {
+          "name": "Multiple project handling",
+          "description": "Acknowledges linting multiple projects and provides appropriate feedback"
+        },
+        {
+          "name": "Progress updates provided",
+          "description": "Shows progress for long-running operations across multiple projects"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Check the IBM API Connect projects 'cart-api' and 'orders-api' for errors",
+      "expected_output": "Lints both projects in a single command using comma-separated names, uses current workspace directory as localDir (default), constructs 'apic lint cart-api,orders-api --localDir .', and reports results",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Multiple projects in single command",
+          "description": "Lint command includes both projects as comma-separated values: 'cart-api,orders-api'"
+        },
+        {
+          "name": "No --all flag used",
+          "description": "Uses specific project names instead of --all flag"
+        },
+        {
+          "name": "Both projects acknowledged",
+          "description": "Response mentions both 'cart-api' and 'orders-api' projects"
+        },
+        {
+          "name": "Single lint operation",
+          "description": "Executes as one lint command, not separate commands for each project"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Lint the API 'customer-orders-api' in APIC project 'ecommerce'. The API is in dev namespace version 1.0",
+      "expected_output": "Lints specific API within a project using --names parameter with namespace:apiname:version format, uses current workspace directory as localDir (default), constructs 'apic lint ecommerce --names dev:customer-orders-api:1.0 --localDir .'",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Uses --names parameter",
+          "description": "Lint command includes '--names' flag for specific API"
+        },
+        {
+          "name": "Correct format used",
+          "description": "Uses format 'dev:customer-orders-api:1.0' for the --names parameter"
+        },
+        {
+          "name": "Project name included",
+          "description": "Lint command specifies 'ecommerce' as the project name"
+        },
+        {
+          "name": "Namespace and version captured",
+          "description": "Command includes the dev namespace and version 1.0"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Validate the APIC project 'payment-api' including dependencies",
+      "expected_output": "Lints the project with dependencies flag enabled, uses current workspace directory as localDir (default), constructs 'apic lint payment-api --localDir . --dependencies true', and reports results including dependency validation",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Dependencies flag included",
+          "description": "Lint command includes '--dependencies true' flag"
+        },
+        {
+          "name": "Dependencies acknowledged",
+          "description": "Response mentions that dependencies are being validated"
+        },
+        {
+          "name": "Dependency results included",
+          "description": "Lint results include validation of project dependencies"
+        },
+        {
+          "name": "Standard lint process followed",
+          "description": "Still performs CLI check and standard lint steps"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Lint the IBM API Connect project 'shipping-api' and show results in JSON format",
+      "expected_output": "Lints the project with JSON output format, uses current workspace directory as localDir (default), constructs 'apic lint shipping-api --localDir . --format JSON', and displays machine-readable JSON results",
+      "files": [],
+      "assertions": [
+        {
+          "name": "JSON format specified",
+          "description": "Lint command includes '--format JSON' parameter"
+        },
+        {
+          "name": "JSON output provided",
+          "description": "Results are displayed in valid JSON format with proper structure"
+        },
+        {
+          "name": "JSON structure includes summary",
+          "description": "JSON output contains results array and summary object with totalAssets, errors, warnings"
+        },
+        {
+          "name": "Machine-readable format",
+          "description": "Output is properly formatted for programmatic consumption"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I need to validate my APIC 'notification-api' project. Can you help me lint it?",
+      "expected_output": "Recognizes lint request, uses current workspace directory as localDir (default — never asks the user for a path), verifies CLI installation, constructs 'apic lint notification-api --localDir .' and executes it",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Default localDir used without asking",
+          "description": "Uses current workspace directory ('.') as --localDir automatically — does NOT prompt the user for a path"
+        },
+        {
+          "name": "CLI verification performed",
+          "description": "Checks for apic CLI installation before proceeding"
+        },
+        {
+          "name": "Lint command constructed correctly",
+          "description": "Constructs 'apic lint notification-api --localDir .' without requiring extra input from user"
+        },
+        {
+          "name": "Lint executed immediately",
+          "description": "Proceeds to execute the lint command without waiting for path information"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Analyze the IBM API Connect 'analytics-api' project for issues",
+      "expected_output": "Recognizes 'analyze' as a lint trigger word, verifies CLI, uses current workspace directory as localDir (default), constructs lint command, executes validation, and provides detailed analysis of issues found",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Analyze keyword recognized",
+          "description": "Skill triggers on 'analyze' keyword as a lint operation"
+        },
+        {
+          "name": "Lint command executed",
+          "description": "Performs standard lint operation using apic lint command"
+        },
+        {
+          "name": "Detailed issue analysis",
+          "description": "Provides comprehensive breakdown of errors and warnings with context"
+        },
+        {
+          "name": "Actionable recommendations",
+          "description": "Suggests specific fixes for identified issues"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Check the APIC 'inventory-api' for errors and show output in table format",
+      "expected_output": "Lints the project with explicit TABLE format specification, uses current workspace directory as localDir (default), constructs 'apic lint inventory-api --localDir . --format TABLE', and displays human-readable table results",
+      "files": [],
+      "assertions": [
+        {
+          "name": "TABLE format explicitly specified",
+          "description": "Lint command includes '--format TABLE' parameter"
+        },
+        {
+          "name": "Table output provided",
+          "description": "Results displayed in organized table format with columns"
+        },
+        {
+          "name": "Table includes all fields",
+          "description": "Table shows Asset Type, File Name, Severity, Message, Line, Path columns"
+        },
+        {
+          "name": "Human-readable format",
+          "description": "Output is easy to read and understand for humans"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Lint all IBM API Connect projects in current directory",
+      "expected_output": "Uses current working directory as localDir, constructs 'apic lint --all --localDir .', verifies CLI, and lints all projects in the current directory",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Current directory used",
+          "description": "Uses '.' or current working directory as localDir when not specified"
+        },
+        {
+          "name": "All projects flag used",
+          "description": "Includes --all flag to lint all projects in directory"
+        },
+        {
+          "name": "Directory context recognized",
+          "description": "Understands 'current directory' reference and uses appropriate path"
+        },
+        {
+          "name": "Multiple projects handled",
+          "description": "Successfully processes all projects found in the directory"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Validate the APIC API 'TestPayments' version 1.0 in dev namespace from 'payments-project'",
+      "expected_output": "Lints specific API with full namespace:name:version format, uses current workspace directory as localDir (default), constructs 'apic lint payments-project --names dev:TestPayments:1.0 --localDir .'",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Full API specification used",
+          "description": "Uses complete namespace:apiname:version format in --names parameter"
+        },
+        {
+          "name": "Specific API targeted",
+          "description": "Lints only the specified API, not the entire project"
+        },
+        {
+          "name": "API validation results",
+          "description": "Reports validation results specific to the TestPayments API"
+        },
+        {
+          "name": "Version-specific linting",
+          "description": "Validates the specific version 1.0 of the API"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "I want to lint the IBM API Connect project 'customer-api' but the apic CLI is not installed. Can you help?",
+      "expected_output": "Detects missing CLI, verifies Node.js version 24, attempts automatic installation via 'npm i -g @apistudio/apim-cli@latest', and either proceeds with lint or provides manual installation instructions if auto-install fails",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI absence detected",
+          "description": "Recognizes that apic CLI is not installed"
+        },
+        {
+          "name": "Node.js version checked",
+          "description": "Verifies Node.js version is 24 before attempting installation"
+        },
+        {
+          "name": "Automatic installation attempted",
+          "description": "Tries to install CLI using npm install command"
+        },
+        {
+          "name": "Installation verification",
+          "description": "Verifies CLI installation success before proceeding with lint"
+        },
+        {
+          "name": "Fallback instructions provided",
+          "description": "Provides manual installation steps if automatic installation fails"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Lint the APIC project 'orders-api' with dependencies and JSON output",
+      "expected_output": "Combines multiple options, uses current workspace directory as localDir (default), constructs 'apic lint orders-api --localDir . --dependencies true --format JSON', and provides JSON-formatted results including dependencies",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Multiple options combined",
+          "description": "Command includes both --dependencies and --format flags"
+        },
+        {
+          "name": "Dependencies included in JSON",
+          "description": "JSON output includes validation results for dependencies"
+        },
+        {
+          "name": "Proper flag ordering",
+          "description": "Command flags are properly ordered and formatted"
+        },
+        {
+          "name": "Complete JSON structure",
+          "description": "JSON output is complete with all required fields and proper structure"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Check if the IBM API Connect project 'broken-api' has any validation errors",
+      "expected_output": "Performs lint operation using current workspace directory as localDir (default), identifies validation errors, provides detailed error messages with line numbers and file paths, and suggests fixes for each error",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Validation errors detected",
+          "description": "Successfully identifies and reports validation errors in the project"
+        },
+        {
+          "name": "Error details provided",
+          "description": "Each error includes severity, message, line number, and file path"
+        },
+        {
+          "name": "Fix suggestions offered",
+          "description": "Provides actionable recommendations for fixing each error"
+        },
+        {
+          "name": "Error prioritization",
+          "description": "Distinguishes between errors and warnings with appropriate severity levels"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Lint APIC projects 'api1', 'api2', and 'api3'",
+      "expected_output": "Lints three projects in single command using comma-separated names, uses current workspace directory as localDir (default), constructs 'apic lint api1,api2,api3 --localDir .', and reports consolidated results",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Three projects specified",
+          "description": "Command includes all three projects as comma-separated values"
+        },
+        {
+          "name": "Single command execution",
+          "description": "Executes as one lint command for efficiency"
+        },
+        {
+          "name": "Consolidated results",
+          "description": "Provides results for all three projects in organized manner"
+        },
+        {
+          "name": "Per-project summary",
+          "description": "Shows summary statistics for each project individually"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Validate the IBM API Connect project 'test-project' but I'm using Node.js version 18. Can you still lint it?",
+      "expected_output": "Detects incorrect Node.js version, informs user that Node.js version 24 is required, provides clear error message, and does NOT proceed with lint operation",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Node.js version detected",
+          "description": "Checks and identifies that Node.js version is not 24"
+        },
+        {
+          "name": "Hard stop enforced",
+          "description": "Does not proceed with lint operation due to version mismatch"
+        },
+        {
+          "name": "Clear error message",
+          "description": "Provides explicit message that Node.js version 24 is required"
+        },
+        {
+          "name": "Version upgrade instructions",
+          "description": "Suggests how to upgrade to Node.js version 24"
+        },
+        {
+          "name": "No alternative methods offered",
+          "description": "Does not offer to lint manually or through alternative methods"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Lint the APIC project 'nonexistent-project'",
+      "expected_output": "Detects that project doesn't exist in current workspace directory, provides clear error message, lists available projects in the directory, and asks user to verify project name",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Project not found error",
+          "description": "Detects and reports that the specified project doesn't exist"
+        },
+        {
+          "name": "Available projects listed",
+          "description": "Lists projects found in the specified directory"
+        },
+        {
+          "name": "User guidance provided",
+          "description": "Asks user to verify and correct the project name"
+        },
+        {
+          "name": "No execution attempted",
+          "description": "Does not attempt to execute lint command for non-existent project"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Can you lint my IBM API Connect project? I'm not sure what the path is",
+      "expected_output": "Recognizes that no project name was given, asks only for the project name (never for a path), uses current workspace directory ('.') as localDir by default, then constructs and executes 'apic lint <project-name> --localDir .'",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Missing project name detected",
+          "description": "Identifies that the project name is missing and asks the user only for the project name"
+        },
+        {
+          "name": "Path never requested",
+          "description": "Does NOT ask the user for a path or localDir — defaults silently to current workspace directory ('.')"
+        },
+        {
+          "name": "Default localDir applied",
+          "description": "Uses '.' as --localDir in the final lint command without user input"
+        },
+        {
+          "name": "Lint executed once project name is known",
+          "description": "Proceeds to execute lint as soon as the project name is provided"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "Lint the APIC project 'secure-api' and ensure all security policies are validated",
+      "expected_output": "Performs standard lint operation using current workspace directory as localDir (default), which includes validation of all assets including security policies, reports any security-related issues found, and highlights policy validation results",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Security context recognized",
+          "description": "Acknowledges the security validation requirement"
+        },
+        {
+          "name": "All assets validated",
+          "description": "Lints all project assets including security policies"
+        },
+        {
+          "name": "Security issues highlighted",
+          "description": "Emphasizes any security-related errors or warnings in results"
+        },
+        {
+          "name": "Policy validation confirmed",
+          "description": "Confirms that security policies were included in validation"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Analyze all IBM API Connect / APIC APIs in workspace and show me a summary of issues",
+      "expected_output": "Lints all projects using --all flag, aggregates results, provides high-level summary of total errors and warnings across all projects, and highlights most critical issues",
+      "files": [],
+      "assertions": [
+        {
+          "name": "All projects linted",
+          "description": "Uses --all flag to lint every project in workspace"
+        },
+        {
+          "name": "Aggregated summary provided",
+          "description": "Shows total counts of errors and warnings across all projects"
+        },
+        {
+          "name": "Critical issues highlighted",
+          "description": "Identifies and emphasizes the most severe issues found"
+        },
+        {
+          "name": "Per-project breakdown available",
+          "description": "Provides detailed breakdown by project if needed"
+        }
+      ]
+    }
+  ]
+}

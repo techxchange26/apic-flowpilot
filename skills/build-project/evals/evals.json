@@ -1,0 +1,149 @@
+{
+  "skill_name": "build-project",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build the IBM API Connect project 'orders-api' located in /Users/developer/api-projects",
+      "expected_output": "Successfully builds the 'orders-api' project, verifies CLI installation, constructs the correct apic build command with --localDir parameter, executes the build, and reports the output location",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI installation check performed",
+          "description": "Verifies that the skill checks for apic CLI installation before attempting build"
+        },
+        {
+          "name": "Correct build command constructed",
+          "description": "Build command includes 'apic build orders-api --localDir' with appropriate path"
+        },
+        {
+          "name": "Output location reported",
+          "description": "Success message includes the location of the built artifact"
+        },
+        {
+          "name": "Next steps suggested",
+          "description": "Provides suggestions for next actions (test, publish, deploy)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to build all the APIC projects in my 'test-api' folder at ~/workspace/test-api. Can you help?",
+      "expected_output": "Successfully builds all projects in the 'test-api' directory using the --all flag, verifies CLI installation, constructs the correct command, and reports completion status",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Uses --all flag",
+          "description": "Build command includes '--all' flag for building all projects"
+        },
+        {
+          "name": "Correct directory specified",
+          "description": "Command uses --localDir with 'test-api' folder path"
+        },
+        {
+          "name": "Multiple project handling",
+          "description": "Acknowledges building multiple projects and provides appropriate feedback"
+        },
+        {
+          "name": "Build completion confirmed",
+          "description": "Reports successful completion of all project builds"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Build both 'cart-api' and 'orders-api' API Connect projects from /opt/api-studio/projects directory",
+      "expected_output": "Successfully builds both 'cart-api' and 'orders-api' projects in a single command using comma-separated project names, verifies CLI, and reports results",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Multiple projects in single command",
+          "description": "Build command includes both projects as comma-separated values: 'cart-api,orders-api'"
+        },
+        {
+          "name": "No --all flag used",
+          "description": "Uses specific project names instead of --all flag"
+        },
+        {
+          "name": "Both projects acknowledged",
+          "description": "Response mentions both 'cart-api' and 'orders-api' projects"
+        },
+        {
+          "name": "Single build operation",
+          "description": "Executes as one build command, not separate commands for each project"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I want to build the specific API 'customer-orders-api' version 1.0 in the dev namespace from the 'ecommerce' APIC project. The project is in /home/user/api-projects/ecommerce",
+      "expected_output": "Successfully builds a specific API within a project using the --names parameter with namespace:apiname:version format",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Uses --names parameter",
+          "description": "Build command includes '--names' flag for specific API"
+        },
+        {
+          "name": "Correct format used",
+          "description": "Uses format 'dev:customer-orders-api:1.0' for the --names parameter"
+        },
+        {
+          "name": "Project name included",
+          "description": "Build command specifies 'ecommerce' as the project name"
+        },
+        {
+          "name": "Namespace and version captured",
+          "description": "Command includes the dev namespace and version 1.0"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Build the APIC project 'payment-api' with debug mode enabled so I can troubleshoot issues. Project is at ~/api-workspace/payment-api",
+      "expected_output": "Successfully builds the 'payment-api' project with the --debug flag enabled for troubleshooting, provides detailed output",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Debug flag included",
+          "description": "Build command includes '--debug' flag"
+        },
+        {
+          "name": "Debug mode acknowledged",
+          "description": "Response mentions that debug mode is enabled"
+        },
+        {
+          "name": "Detailed output expected",
+          "description": "Indicates that detailed/verbose output will be provided"
+        },
+        {
+          "name": "Standard build process followed",
+          "description": "Still performs CLI check and standard build steps"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Build the IBM API Connect project 'shipping-api' and save the output to ./releases/v1.0/shipping.zip. The project is in /var/api-projects/shipping-api",
+      "expected_output": "Successfully builds the project with custom output path specified using --output parameter, creates necessary directories if needed",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Custom output path used",
+          "description": "Build command includes '--output ./releases/v1.0/shipping.zip'"
+        },
+        {
+          "name": "Directory creation mentioned",
+          "description": "Acknowledges that output directory will be created if it doesn't exist"
+        },
+        {
+          "name": "Output location confirmed",
+          "description": "Success message confirms the artifact was saved to the specified location"
+        },
+        {
+          "name": "File naming preserved",
+          "description": "Uses the exact filename 'shipping.zip' as specified"
+        }
+      ]
+    }
+  ]
+}

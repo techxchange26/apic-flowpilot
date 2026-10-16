@@ -1,0 +1,23 @@
+{
+  "skill_name": "test-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a Pet Store API Connect project in /Users/vignesh/Work/Studio-assets/bob-generated/petstore-api. The OpenAPI spec is in the spec/ folder. Can you generate a comprehensive test suite for this API? I need tests for the main pet operations - creating, reading, and updating pets. Make sure to include proper assertions and environment setup for authentication.",
+      "expected_output": "Complete test suite with: (1) Main test file referencing the petstore API, (2) Multiple assertion files for different endpoints and response codes, (3) Environment file with authentication variables, (4) All files following APIC schema and naming conventions",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to test my APIC payment API that's deployed at http://localhost:9090. The API spec is at /Users/vignesh/Work/webm-api-management-cli/test/resources/apim/api-studio-root/PaymentProject/specs/petstore.yaml. Generate tests that I can run immediately with the apic test command. Include both success and error scenarios.",
+      "expected_output": "Test suite with: (1) Test file with realistic test cases for payment operations, (2) Assertions covering 200 and 400/404 responses, (3) Environment file for any required credentials, (4) Clear instructions on how to execute the tests with the apic command",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "hey so i've got this IBM DataPower Interact Gateway wizard world api project at /Users/vignesh/Work/Studio-assets/bob-generated/wizard-world-api and i want to add some basic tests to make sure the endpoints are working. the spec is a json file in the spec folder. can you set that up for me? just need like 2-3 simple tests, nothing crazy",
+      "expected_output": "Minimal but complete test suite with: (1) 2-3 focused test cases for key endpoints, (2) Basic assertions for status codes and response structure, (3) Simple environment file if needed, (4) Files saved to the project's tests/ directory",
+      "files": []
+    }
+  ]
+}

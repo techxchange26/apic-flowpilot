@@ -1,0 +1,13 @@
+kind: environment
+apiVersion: api.ibm.com/v1
+metadata:
+  name: Default_Environment_APIKey
+  namespace: wM_APIKey_Weather
+  version: '1.0'
+  tags:
+    - environment
+spec:
+  variables:
+    - key: apikey_APIKey
+      isSecret: true
+      value: $(apikey_APIKey)

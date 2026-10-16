@@ -1,0 +1,11 @@
+kind: URISchemes
+apiVersion: api.ibm.com/v1
+metadata:
+  name: DPNano_Uri
+  namespace: DPNano_Product_Weather
+  version: '1'
+  tags: []
+  description: ''
+spec:
+  uriSchemes:
+    - https

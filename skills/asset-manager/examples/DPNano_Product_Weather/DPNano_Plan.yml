@@ -1,0 +1,12 @@
+kind: Plan
+apiVersion: api.ibm.com/v1
+metadata:
+  name: DPNano_Plan
+  namespace: DPNano_Product_Weather
+  version: '1'
+  tags: []
+  description: ''
+spec:
+  qos:
+    withQuota:
+      unlimited: {}

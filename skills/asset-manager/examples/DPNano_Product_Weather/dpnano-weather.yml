@@ -1,0 +1,28 @@
+kind: Product
+apiVersion: api.ibm.com/v1
+metadata:
+  name: dpnano-weather
+  namespace: dpnano_product_weather
+  version: '1'
+  tags: []
+  description: ''
+spec:
+  apis:
+    - $ref: DPNano_Product_Weather:WeatherApi_Nano:1
+  plans:
+    - $ref: DPNano_Product_Weather:DPNano_Plan:1
+  extensions:
+    portal-config:
+      apiVersion: api.ibm.com/v1
+      spec:
+        visibility:
+          view:
+            type: public
+            orgs: []
+            enabled: true
+            tags: []
+          subscribe:
+            type: authenticated
+            orgs: []
+            enabled: true
+            tags: []

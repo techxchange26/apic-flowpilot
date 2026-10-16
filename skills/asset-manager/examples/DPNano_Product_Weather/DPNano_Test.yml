@@ -1,0 +1,31 @@
+kind: test
+apiVersion: api.ibm.com/v1
+metadata:
+  namespace: DPNano_Product_Weather
+  name: DPNano_Test
+  version: '1.0'
+  tags: []
+spec:
+  api:
+    $ref: DPNano_Product_Weather:WeatherApi_Nano:1
+  environment:
+    $ref: DPNano_Product_Weather:weather-environment:1.0
+  request:
+    - method: GET
+      resource: /air-temperature
+      headers:
+        - key: accept
+          value: application/json
+        - key: X-IBM-Client-Id
+          value: ${X-IBM-Client-Id_value}
+        - key: X-IBM-Client-Secret
+          value: ${X-IBM-Client-Secret_value}
+      parameters:
+        - key: station_id
+          value: S101
+        - key: start_time
+          value: '2025-11-11T00:00:00+08:00'
+        - key: end_time
+          value: '2025-11-11T12:00:00+08:00'
+      assertions:
+        $ref: DPNano_Product_Weather:GET-air-temperature-200:1.0

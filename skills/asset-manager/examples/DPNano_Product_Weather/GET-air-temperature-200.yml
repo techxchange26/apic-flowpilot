@@ -1,0 +1,13 @@
+kind: assertion
+apiVersion: api.ibm.com/v1
+metadata:
+  name: GET-air-temperature-200
+  namespace: DPNano_Product_Weather
+  version: '1.0'
+  tags: []
+  description: ''
+spec:
+  - name: Validate the response status code
+    key: code
+    action: equals
+    value: 200

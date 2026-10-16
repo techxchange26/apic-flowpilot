@@ -1,0 +1,35 @@
+{
+  "skill_name": "asset-manager",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have an OpenAPI spec for my weather service at ./weather-api-spec.yaml. Create an API asset for the DataPower Nano Gateway. The backend service is at https://api.weather.example.com and it uses JWT authentication.",
+      "expected_output": "Should retrieve schemas from CLI for API, FreeFlowPolicySequence, Invoke, and URISchemes. Should generate complete asset set with proper $ref and $path references. Every asset must include namespace (project name) and tags (context-specific, e.g. [\"weather\"]). Should prompt about security and suggest ExtractIdentity (jwt) + Authenticate (jwt) + Authorize (jwt) pipeline based on JWT authentication.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create an APIC API for my Express.js service. I don't have an OpenAPI spec yet. The service has routes in ./routes/api.js and uses API key authentication via X-API-Key header.",
+      "expected_output": "Should analyze workspace to discover routes, read references/openapi-generation.md, generate OpenAPI spec, retrieve all necessary schemas from CLI, create complete asset set with namespace and context-specific tags on every asset, and suggest ExtractIdentity (apiKey) + Authenticate (subscription) for API key security on DataPower Nano Gateway.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need to create an API for the WebMethods Gateway in IBM API Connect. Here's my OpenAPI spec that defines OAuth2 authentication. The backend is a SOAP service at https://soap.enterprise.example.com/services.",
+      "expected_output": "Should use wmgw gateway type, retrieve StagedPolicySequence schema (not FreeFlowPolicySequence), generate appropriate assets with $ref references and namespace + tags on every asset, and suggest IAM with OAuth2 configuration for security.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Create an API Connect asset but skip the security policies for now. I'll add them later. Use the OpenAPI spec at ./specs/payment-api.yaml for the lightweight gateway.",
+      "expected_output": "Should still prompt about security importance but respect user's decision to skip. Should generate API, FreeFlowPolicySequence, Invoke, and URISchemes without security policy reference. Every asset must have namespace and tags. Should retrieve all schemas from CLI.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I have an OpenAPI spec for a public API but the current workspace is a different project (Python Django). Create the APIC API asset for the lightweight gateway. The spec defines Bearer token authentication.",
+      "expected_output": "Should recognize workspace is unrelated to OpenAPI spec. Should suggest generic security policies based only on OpenAPI security schemes (JWT Bearer). Should not analyze Django workspace code. Should generate complete asset set with proper references, namespace set to project name, and context-appropriate tags on every asset.",
+      "files": []
+    }
+  ]
+}

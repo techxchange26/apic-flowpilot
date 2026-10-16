@@ -1,0 +1,19 @@
+kind: Log
+apiVersion: api.ibm.com/v1
+metadata:
+  name: wM_APIKey_Log
+  namespace: wM_APIKey_Weather
+  version: '1.0'
+  tags:
+    - log
+  labels:
+    gatewayTypes:
+      - webMethods
+spec:
+  logRequestHeaders: true
+  logRequestPayload: true
+  logResponseHeaders: true
+  logResponsePayload: true
+  logGenerationFrequency: always
+  destination:
+    - api_gateway

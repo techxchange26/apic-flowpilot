@@ -1,0 +1,12 @@
+kind: environment
+apiVersion: api.ibm.com/v1
+metadata:
+  name: petstore-environment
+  namespace: dev
+  version: "1.0"
+  tags: []
+spec:
+  variables:
+    - key: bearer_token
+      isSecret: true
+      value: ""

@@ -1,0 +1,1 @@
+Ensure that in the catalog where this project is going to be published, in the catalog settings the TLS client profile (Default TLS client profile:1.0.0) is attached. If this is attached then the publish will automatically work.

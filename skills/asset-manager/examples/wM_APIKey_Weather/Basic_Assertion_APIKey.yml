@@ -1,0 +1,13 @@
+kind: assertion
+apiVersion: api.ibm.com/v1
+metadata:
+  name: Basic_Assertion_APIKey
+  namespace: wM_APIKey_Weather
+  version: '1.0'
+  tags:
+    - assertion
+spec:
+  - name: status
+    key: responseStatus
+    value: 200
+    action: equals

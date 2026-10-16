@@ -1,0 +1,22 @@
+kind: IAM
+apiVersion: api.ibm.com/v1
+metadata:
+  name: wM_APIKey_IAM
+  namespace: wM_APIKey_Weather
+  version: '1.0'
+  tags: []
+  labels:
+    gatewayTypes:
+      - webMethods
+spec:
+  accessControl:
+    - - apiKey:
+          applicationSecurity:
+            mode: authorize
+  extensions:
+    webm-gateway:
+      apiVersion: api.ibm.com/v1
+      spec:
+        triggerPolicyViolation: false
+        authenticationMode: ANY
+        accessControl: {}

@@ -1,0 +1,37 @@
+kind: test
+apiVersion: api.ibm.com/v1
+metadata:
+  name: <api-name>-query-params-test
+  namespace: <namespace>
+  version: "1.0"
+  tags: []
+spec:
+  api:
+    $endpoint: https://gateway:port/api/path
+  request:
+    - method: GET
+      resource: /pet/findByStatus
+      headers:
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      parameters:
+        - key: status
+          value: available
+          type: query
+      assertions:
+        - $ref: <namespace>:200-success:1.0
+
+    - method: GET
+      resource: /pet/findByTags
+      headers:
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      parameters:
+        - key: tags
+          value: dog,friendly
+          type: query
+      assertions:
+        - $ref: <namespace>:200-success:1.0
+
+  environment:
+    $ref: <namespace>:<api-name>-environment:1.0

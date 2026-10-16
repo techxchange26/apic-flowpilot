@@ -1,0 +1,13 @@
+kind: Authenticate
+apiVersion: api.ibm.com/v1
+metadata:
+  name: DPNano_Authenticate
+  namespace: DPNano_Product_Weather
+  version: '1'
+  tags: []
+  labels:
+    gatewayTypes:
+      - nano
+spec:
+  operation:
+    subscription: {}

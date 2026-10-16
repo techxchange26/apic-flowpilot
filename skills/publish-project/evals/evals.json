@@ -1,0 +1,221 @@
+{
+  "skill_name": "publish-project",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Publish the IBM API Connect project at /Users/developer/api-projects/cart-api to APIM",
+      "expected_output": "Builds the project first (since a directory path is provided), then publishes to APIM by gathering credentials, fetching organizations/catalogs/spaces, selecting gateway service, and completing the publish operation",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI installation check performed",
+          "description": "Verifies that apic CLI is installed before attempting any operations"
+        },
+        {
+          "name": "Project build triggered",
+          "description": "Recognizes directory path and triggers build using build-project skill"
+        },
+        {
+          "name": "Build output location used",
+          "description": "Uses the built ZIP from builds/cart-api.zip for publishing"
+        },
+        {
+          "name": "APIM credentials gathered",
+          "description": "Prompts for or uses APIM URL, username, password, and realm"
+        },
+        {
+          "name": "Resource discovery performed",
+          "description": "Fetches organizations, catalogs, spaces, and gateway services"
+        },
+        {
+          "name": "Publish completed",
+          "description": "Successfully publishes the project to the selected catalog/space"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Publish the APIC project build at /Users/developer/api-projects/builds/orders-api.zip to APIM nano gateway",
+      "expected_output": "Directly uses the provided ZIP file path without building, authenticates to APIM, discovers resources, and publishes to DataPower Nano Gateway",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI installation check performed",
+          "description": "Verifies that apic CLI is installed before attempting validation"
+        },
+        {
+          "name": "No build triggered",
+          "description": "Recognizes ZIP file path and skips the build step"
+        },
+        {
+          "name": "ZIP path used directly",
+          "description": "Uses ./builds/orders-api.zip directly for publishing"
+        },
+        {
+          "name": "Gateway service selection",
+          "description": "Filters or selects DataPower Nano Gateway service"
+        },
+        {
+          "name": "Correct publish URL",
+          "description": "Uses ORG_ID and CATALOG_ID in publish URL, not names"
+        },
+        {
+          "name": "Content type specified",
+          "description": "Includes type=application/zip in the form data"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need to publish my APIC payment-api project located at ~/workspace/payment-api to the sandbox catalog in APIM. Use the datapower-nano-gateway service.",
+      "expected_output": "Builds the project from the directory, authenticates to APIM, navigates to the sandbox catalog, selects the specified gateway service, and publishes successfully",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI installation check performed",
+          "description": "Verifies that apic CLI is installed before attempting any operations"
+        },
+        {
+          "name": "Directory path recognized",
+          "description": "Identifies ~/workspace/payment-api as a directory and triggers build"
+        },
+        {
+          "name": "Catalog selection",
+          "description": "Selects or navigates to the 'sandbox' catalog"
+        },
+        {
+          "name": "Gateway service specified",
+          "description": "Uses 'datapower-nano-gateway' as specified"
+        },
+        {
+          "name": "Build and publish workflow",
+          "description": "Completes both build and publish operations in sequence"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Publish /opt/api-builds/shipping-api-v1.0.zip to APIM production catalog in the retail-space",
+      "expected_output": "Uses the pre-built ZIP file, authenticates to APIM, navigates to production catalog and retail-space, and publishes to the space level",
+      "files": [],
+      "assertions": [
+        {
+          "name": "CLI installation check performed",
+          "description": "Verifies that apic CLI is installed before attempting validation"
+        },
+        {
+          "name": "Pre-built ZIP used",
+          "description": "Uses the provided ZIP file path without building"
+        },
+        {
+          "name": "Production catalog selected",
+          "description": "Navigates to or selects the 'production' catalog"
+        },
+        {
+          "name": "Space-level publish",
+          "description": "Publishes to 'retail-space' within the catalog"
+        },
+        {
+          "name": "Space publish URL",
+          "description": "Uses /api/spaces/{orgId}/{catalogId}/{spaceId}/publish-project endpoint"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Deploy the IBM API Connect customer-api project from /var/api-projects/customer-api to APIM. I want to publish it to the dev catalog without any space.",
+      "expected_output": "Builds the project, authenticates to APIM, selects the dev catalog, skips space selection, and publishes at catalog level",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Project built from directory",
+          "description": "Triggers build for the customer-api project"
+        },
+        {
+          "name": "Catalog-level publish",
+          "description": "Publishes to catalog level without selecting a space"
+        },
+        {
+          "name": "Catalog publish URL",
+          "description": "Uses /api/catalogs/{orgId}/{catalogId}/publish-project endpoint"
+        },
+        {
+          "name": "No space parameter",
+          "description": "Does not include space in the publish request"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Publish the built artifact at ./releases/inventory-api.zip to my APIM instance at https://apim.example.com. Use my-org organization and sandbox catalog.",
+      "expected_output": "Uses the pre-built ZIP, connects to the specified APIM URL, navigates to the specified organization and catalog, and completes the publish",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Custom APIM URL used",
+          "description": "Connects to https://apim.example.com as specified"
+        },
+        {
+          "name": "Organization specified",
+          "description": "Uses 'my-org' organization"
+        },
+        {
+          "name": "Catalog specified",
+          "description": "Uses 'sandbox' catalog"
+        },
+        {
+          "name": "Pre-built artifact used",
+          "description": "Uses ./releases/inventory-api.zip without building"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I have an APIC project at /home/user/apis/notification-api that needs to be published to APIM. Can you help me publish it?",
+      "expected_output": "Recognizes the directory path, builds the project, gathers APIM credentials interactively, discovers available resources, and guides through the publish process",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Interactive workflow",
+          "description": "Prompts for missing information (APIM URL, credentials, etc.)"
+        },
+        {
+          "name": "Build triggered",
+          "description": "Builds the project from the directory path"
+        },
+        {
+          "name": "Resource discovery",
+          "description": "Lists available organizations, catalogs, spaces, and gateways"
+        },
+        {
+          "name": "User guidance",
+          "description": "Provides clear instructions and options at each step"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Publish builds/analytics-api.zip to APIM with migrate_subscriptions enabled",
+      "expected_output": "Uses the pre-built ZIP, authenticates to APIM, and publishes with the migrate_subscriptions query parameter set to true",
+      "files": [],
+      "assertions": [
+        {
+          "name": "Pre-built ZIP used",
+          "description": "Uses builds/analytics-api.zip without building"
+        },
+        {
+          "name": "Migration parameter included",
+          "description": "Includes migrate_subscriptions=true in the publish URL"
+        },
+        {
+          "name": "Subscription migration acknowledged",
+          "description": "Mentions or confirms that subscriptions will be migrated"
+        },
+        {
+          "name": "Publish successful",
+          "description": "Completes the publish operation successfully"
+        }
+      ]
+    }
+  ]
+}

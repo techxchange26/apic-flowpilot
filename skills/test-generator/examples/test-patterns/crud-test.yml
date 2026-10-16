@@ -1,0 +1,78 @@
+kind: test
+apiVersion: api.ibm.com/v1
+metadata:
+  name: <api-name>-crud-test
+  namespace: <namespace>
+  version: "1.0"
+  tags: []
+spec:
+  api:
+    $endpoint: https://gateway:port/api/path
+  request:
+    # CREATE — POST is safe to test (no ID dependency)
+    - method: POST
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      payload:
+        raw:
+          json: |-
+            {
+              "id": 10,
+              "name": "doggie",
+              "photoUrls": ["string"]
+            }
+      parameters: []
+      assertions:
+        - $ref: <namespace>:201-created:1.0
+
+    # UPDATE — PUT is safe to test
+    - method: PUT
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      payload:
+        raw:
+          json: |-
+            {
+              "id": 10,
+              "name": "updated-doggie",
+              "photoUrls": ["string"]
+            }
+      parameters: []
+      assertions:
+        - $ref: <namespace>:200-pet-response:1.0
+
+    # LIST — collection GET (no ID path param) is safe to test
+    - method: GET
+      resource: /pets
+      headers:
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      parameters: []
+      assertions:
+        - $ref: <namespace>:200-success:1.0
+
+    # BAD REQUEST — invalid payload triggers 400
+    - method: POST
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+        - key: Authorization
+          value: Bearer ${bearer_token}
+      payload:
+        raw:
+          json: '{"invalid": "data"}'
+      parameters: []
+      assertions:
+        - $ref: <namespace>:400-bad-request:1.0
+
+  environment:
+    $ref: <namespace>:<api-name>-environment:1.0

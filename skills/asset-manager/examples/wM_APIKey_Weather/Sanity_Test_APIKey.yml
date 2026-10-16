@@ -1,0 +1,29 @@
+kind: test
+apiVersion: api.ibm.com/v1
+metadata:
+  namespace: wM_APIKey_Weather
+  name: Sanity_Test_APIKey
+  version: '1.0'
+  tags: []
+spec:
+  api:
+    $ref: wM_APIKey_Weather:WeatherApi_APIKey:1.0
+  request:
+    - method: GET
+      resource: /air-temperature
+      headers:
+        - key: accept
+          value: application/json
+        - key: x-gateway-apikey
+          value: ${apikey_APIKey}
+      parameters:
+        - key: station_id
+          value: S101
+        - key: start_time
+          value: 2025-11-10T16:00:00.000Z
+        - key: end_time
+          value: 2025-11-11T04:00:00.000Z
+      assertions:
+        $ref: wM_APIKey_Weather:Basic_Assertion_APIKey:1.0
+  environment:
+    $ref: wM_APIKey_Weather:Default_Environment_APIKey:1.0

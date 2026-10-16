@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Singapore Air Temperature API
+  version: '1'
+  description: >
+    This API provides real-time air temperature data for Singapore, sourced from
+    the National Environment Agency (NEA). It is designed to demonstrate IBM API
+    Connect capabilities using the DataPower Nano Gateway.
+
+
+    The API exposes a single GET endpoint at /environment/air-temperature that
+    retrieves current temperature readings from multiple weather stations across
+    Singapore.
+
+    Gateway Type: DataPower Nano Gateway
+
+    Security: The API uses API Key authentication via X-IBM-Client-Id and
+    X-IBM-Client-Secret headers (clientID and clientSecret security schemes).
+
+
+    Policy Sequence: The DataPower Nano Policy Sequence (DPNano_PolicySequence)
+    includes:
+
+    - Extract Identity Policy: Extracts client identity from authentication
+    credentials
+
+    - Authenticate Policy: Validates API key credentials
+
+    - Authorize Policy: Enforces authorization rules
+
+    - Invoke Policy: Routes requests to the backend NEA environment API with
+    header control and timeout configuration
+
+    - Telemetry Policy: Collects metrics and monitoring data for API usage
+    analytics
+
+
+    API Configuration:
+
+    In DataPower Nano Gateway, CORS and URI Schemes are defined as separate kind
+    resources (not part of the Policy Sequence) and are referenced by the API
+    kind.
+
+    - CORS (DPNano_Cors): Separate kind resource that enables cross-origin
+    requests with allow rules for all origins
+
+    - URI Schemes (DPNano_Uri): Separate kind resource that defines allowed
+    protocols (HTTPS) for API access
+
+
+    Product & Plan:
+
+    Products and Plans are not tightly coupled to individual APIs, allowing
+    flexible packaging and reuse across multiple APIs.
+
+    This API is packaged in DPNano_Product with DPNano_Plan that includes:
+
+    - Quota Limiting: Quota enforcement with blocking behavior when limit is
+    reached.
+      Quota limiting is enforced at the plan level - when users subscribe to a plan, the quota applies to all their requests under that subscription.
+servers:
+  - url: /environment
+    description: Base URL for NEA environment data API
+paths:
+  /air-temperature:
+    get:
+      summary: Get air temperature readings across Singapore
+      description: >
+        Returns the current (or recent) air temperature observations across
+        multiple stations in Singapore.
+
+        The dataset covers May 2016 to present.
+      parameters:
+        - name: station_id
+          in: query
+          description: The station identifier to filter by a specific station (optional)
+          required: false
+          schema:
+            type: string
+            example: S101
+        - name: start_time
+          in: query
+          description: ISO-8601 timestamp to filter readings from this time (optional)
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2025-11-11T00:00:00+08:00'
+        - name: end_time
+          in: query
+          description: ISO-8601 timestamp to filter readings up to this time (optional)
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2025-11-11T12:00:00+08:00'
+      responses:
+        '200':
+          description: Successful retrieval of air-temperature readings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    description: List of station temperature readings
+                    items:
+                      $ref: '#/components/schemas/StationReading'
+                  api_info:
+                    $ref: '#/components/schemas/ApiInfo'
+        '400':
+          description: Bad request e.g., invalid query parameter
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    StationReading:
+      type: object
+      properties:
+        station_id:
+          type: string
+          description: Unique station identifier
+          example: S101
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the reading
+          example: '2025-11-11T12:05:00+08:00'
+        temperature:
+          type: number
+          format: float
+          description: Air temperature in degree Celsius
+          example: 29.7
+      required:
+        - station_id
+        - timestamp
+        - temperature
+    ApiInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Status of the API response
+          example: healthy
+        version:
+          type: string
+          description: API version
+          example: v1
+      required:
+        - status
+        - version
+  securitySchemes:
+    clientID:
+      name: X-IBM-Client-Id
+      in: header
+      description: ''
+      type: apiKey
+    clientSecret:
+      name: X-IBM-Client-Secret
+      in: header
+      description: ''
+      x-key-type: client_secret
+      type: apiKey
+security:
+  - clientID: []
+    clientSecret: []

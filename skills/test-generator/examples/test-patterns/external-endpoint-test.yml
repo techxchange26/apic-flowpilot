@@ -1,0 +1,39 @@
+kind: test
+apiVersion: api.ibm.com/v1
+metadata:
+  name: <api-name>-external-test
+  namespace: <namespace>
+  version: "1.0"
+  tags: []
+spec:
+  api:
+    $endpoint: https://<base-url>/
+  request:
+    - method: POST
+      resource: /pet
+      headers:
+        - key: content-type
+          value: application/json
+      payload:
+        raw:
+          json: |-
+            {
+              "id": 100,
+              "name": "test-dog",
+              "photoUrls": ["https://example.com/photo.jpg"]
+            }
+      parameters: []
+      assertions:
+        - $ref: <namespace>:201-created:1.0
+
+    - method: GET
+      resource: /pets
+      headers:
+        - key: accept
+          value: application/json
+      parameters: []
+      assertions:
+        - $ref: <namespace>:200-success:1.0
+
+  environment:
+    $ref: <namespace>:<api-name>-environment:1.0

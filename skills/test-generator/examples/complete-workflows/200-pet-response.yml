@@ -1,0 +1,39 @@
+kind: assertion
+apiVersion: api.ibm.com/v1
+metadata:
+  name: 200-pet-response
+  namespace: dev
+  version: "1.0"
+  tags:
+    - assertion
+spec:
+  - name: Validate response status code
+    key: responseStatus
+    value: 200            # should always be an un-quoted number 
+    action: equals
+    stopOnFail: false
+  - name: Validate content type
+    key: responseHeaders.content-type
+    value: application/json
+    action: equals
+    stopOnFail: false
+  - name: Validate Pet schema
+    key: responseBody
+    value: '{"type":"object","required":["id","name","photoUrls"],"properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"},"photoUrls":{"type":"array","items":{"type":"string"}}}}'
+    action: validateSchema
+    stopOnFail: false
+  - name: "Validate required property: id"
+    key: responseBody
+    value: id
+    action: haveProperty
+    stopOnFail: false
+  - name: "Validate required property: name"
+    key: responseBody
+    value: name
+    action: haveProperty
+    stopOnFail: false
+  - name: "Validate required property: photoUrls"
+    key: responseBody
+    value: photoUrls
+    action: haveProperty
+    stopOnFail: false
