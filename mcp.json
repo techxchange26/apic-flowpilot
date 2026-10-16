@@ -5,7 +5,7 @@
       "args": [
         "-y",
         "-p",
-        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/analytics/apic-analytics-mcp-server-0.0.1.tgz",
+        "/home/itzuser/IBM/Bob/workspaces/FlowPilot-Lab/.bob/mcp-servers/analytics/apic-analytics-mcp-server-0.0.1.tgz",
         "apic-analytics-mcp-server"
       ],
       "env": {
@@ -23,7 +23,7 @@
       "args": [
         "-y",
         "-p",
-        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/governance/apic-governance-mcp-server-0.0.1.tgz",
+        "/home/itzuser/IBM/Bob/workspaces/FlowPilot-Lab/.bob/mcp-servers/governance/apic-governance-mcp-server-0.0.1.tgz",
         "apic-governance-mcp-server"
       ],
       "env": {
@@ -41,7 +41,7 @@
       "args": [
         "-y",
         "-p",
-        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/management/apic-management-mcp-server-0.0.1.tgz",
+        "/home/itzuser/IBM/Bob/workspaces/FlowPilot-Lab/.bob/mcp-servers/management/apic-management-mcp-server-0.0.1.tgz",
         "apic-management-mcp-server"
       ],
       "env": {
@@ -59,7 +59,7 @@
       "args": [
         "-y",
         "-p",
-        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/genai-spec/apic-genai-spec-mcp-server-0.0.1.tgz",
+        "/home/itzuser/IBM/Bob/workspaces/FlowPilot-Lab/.bob/mcp-servers/genai-spec/apic-genai-spec-mcp-server-0.0.1.tgz",
         "apic-genai-spec-mcp-server"
       ],
       "env": {
@@ -77,7 +77,7 @@
       "args": [
         "-y",
         "-p",
-        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/ai-gateway-management/ai-gateway-management-mcp-server-0.0.1.tgz",
+        "/home/itzuser/IBM/Bob/workspaces/FlowPilot-Lab/.bob/mcp-servers/ai-gateway-management/ai-gateway-management-mcp-server-0.0.1.tgz",
         "ai-gateway-management-mcp-server"
       ],
       "env": {
