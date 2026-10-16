@@ -1,0 +1,94 @@
+{
+  "mcpServers": {
+    "apic-analytics-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "-p",
+        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/analytics/apic-analytics-mcp-server-0.0.1.tgz",
+        "apic-analytics-mcp-server"
+      ],
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "PROVIDER_ORG": "idig",
+        "API_KEY": "<YOUR-API-KEY>",
+        "client_id": "<YOUR-CLIENT-ID>",
+        "client_secret": "<YOUR-CLIENT-SECRET>",
+        "APIC_PLATFORM_URL": "https://platform-api.us-east-b.apiconnect.automation.ibm.com",
+        "APIC_MANAGEMENT_URL": "https://api-manager.us-east-b.apiconnect.automation.ibm.com"
+      }
+    },
+    "apic-governance-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "-p",
+        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/governance/apic-governance-mcp-server-0.0.1.tgz",
+        "apic-governance-mcp-server"
+      ],
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "PROVIDER_ORG": "idig",
+        "API_KEY": "<YOUR-API-KEY>",
+        "client_id": "<YOUR-CLIENT-ID>",
+        "client_secret": "<YOUR-CLIENT-SECRET>",
+        "APIC_PLATFORM_URL": "https://platform-api.us-east-b.apiconnect.automation.ibm.com",
+        "APIC_MANAGEMENT_URL": "https://api-manager.us-east-b.apiconnect.automation.ibm.com"
+      }
+    },
+    "apic-management-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "-p",
+        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/management/apic-management-mcp-server-0.0.1.tgz",
+        "apic-management-mcp-server"
+      ],
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "PROVIDER_ORG": "idig",
+        "API_KEY": "<YOUR-API-KEY>",
+        "client_id": "<YOUR-CLIENT-ID>",
+        "client_secret": "<YOUR-CLIENT-SECRET>",
+        "APIC_PLATFORM_URL": "https://platform-api.us-east-b.apiconnect.automation.ibm.com",
+        "APIC_MANAGEMENT_URL": "https://api-manager.us-east-b.apiconnect.automation.ibm.com"
+      }
+    },
+    "apic-genai-spec-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "-p",
+        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/genai-spec/apic-genai-spec-mcp-server-0.0.1.tgz",
+        "apic-genai-spec-mcp-server"
+      ],
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "PROVIDER_ORG": "idig",
+        "API_KEY": "<YOUR-API-KEY>",
+        "client_id": "<YOUR-CLIENT-ID>",
+        "client_secret": "<YOUR-CLIENT-SECRET>",
+        "APIC_PLATFORM_URL": "https://platform-api.us-east-b.apiconnect.automation.ibm.com",
+        "APIC_MANAGEMENT_URL": "https://api-manager.us-east-b.apiconnect.automation.ibm.com"
+      }
+    },
+    "ai-gateway-management-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "-p",
+        "/Users/sowbarnigaa/Documents/flowpilot/IBM_API_Connect_Flow_Pilot-12.1.1.2.4/mcp-servers/ai-gateway-management/ai-gateway-management-mcp-server-0.0.1.tgz",
+        "ai-gateway-management-mcp-server"
+      ],
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+        "PROVIDER_ORG": "idig",
+        "API_KEY": "<YOUR-API-KEY>",
+        "client_id": "<YOUR-CLIENT-ID>",
+        "client_secret": "<YOUR-CLIENT-SECRET>",
+        "APIC_PLATFORM_URL": "https://platform-api.us-east-b.apiconnect.automation.ibm.com",
+        "APIC_MANAGEMENT_URL": "https://api-manager.us-east-b.apiconnect.automation.ibm.com"
+      }
+    }
+  }
+}
